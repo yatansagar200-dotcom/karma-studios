@@ -3,37 +3,34 @@ import { fetchTiles } from '../api/tiles';
 import TileCard from '../components/TileCard';
 
 export default function Home(){
-  const [tiles, setTiles] = useState([]);
-  const [q, setQ] = useState('');
+  const [tiles, setTiles] = useState([]);  
 
   const load = async (search='') => {
     try {
       const res = await fetchTiles(search);
       setTiles(res.data);
     } catch (err) { console.error(err) }
-  };
+  };  
 
   useEffect(()=> { load(); }, []);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    load(q);
-  };
-
   return (
     <div>
-      <div className="card mb-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold">Our Tiles</h2>
-          <form onSubmit={handleSearch} className="flex gap-2">
-            <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search by name or brand" className="px-3 py-2 border rounded"/>
-            <button className="px-3 py-2 bg-blue-600 text-white rounded">Search</button>
-          </form>
+      {/* Hero section */}
+      <div className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8 flex flex-col items-center text-center gap-4 hero-cta">
+        <div className="max-w-3xl">
+          <h1 className="text-3xl md:text-5xl font-bold">Beautiful Tiles For Every Space</h1>
+          <p className="mt-2 text-gray-600">Browse a curated selection of premium tiles — quality, style and durability combined.</p>
+          <div className="mt-6">
+            <a href="#tiles-grid" className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+              Shop Tiles
+            </a>
+          </div>
         </div>
-        <p className="mt-3 text-sm text-gray-600">Scroll down to see tiles</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {/* Tiles Grid */}
+      <div id="tiles-grid" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {tiles.map(t => <TileCard key={t._id} tile={t} />)}
       </div>
     </div>

@@ -11,15 +11,19 @@ export default function App(){
   return (
     <>
       <Navbar />
-      <div className="container py-6">
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/admin/login" element={<AdminLogin/>} />
-          <Route path="/admin/dashboard" element={<AdminDashboard/>} />
-        </Routes>
-      </div>
+      <main className="pt-24">
+        <div className="container py-6">
+          <div className="max-w-6xl mx-auto">
+            <Routes>
+              <Route path="/" element={<Home/>} />
+              <Route path="/about" element={<About/>} />
+              <Route path="/contact" element={<Contact/>} />
+              <Route path="/admin/login" element={<AdminLogin/>} />
+              <Route path="/admin/dashboard" element={<AdminDashboard/>} />
+            </Routes>
+          </div>
+        </div>
+      </main>
     </>
   )
 }

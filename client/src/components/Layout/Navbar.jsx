@@ -1,19 +1,29 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Navbar(){
   return (
-    <nav className="bg-white shadow">
-      <div className="container flex items-center justify-between h-16">
-        <div className="flex items-center gap-3">
-          <img src="/src/assets/karma-logo.png" alt="logo" className="w-12 h-12"/>
-          <span className="font-bold text-xl">Karma Studios</span>
+    <nav className="site-navbar shadow fixed top-0 left-0 right-0 z-30">
+      <div className="container flex items-center justify-between h-20 py-3">
+        {/* Left: Logo */}
+        <Link to="/" aria-label="Karma Studios home" className="flex items-center gap-2 flex-shrink-0">
+          <img src="/src/assets/karma-logo.png" alt="logo" className="h-8 md:h-10 object-contain" />
+          <span className="hidden sm:inline font-semibold text-lg">Karma Studios</span>
+        </Link>
+
+        {/* Center: Search Bar */}
+        <div className="flex-1 flex justify-center px-4 lg:px-8">
+          <div className="w-full max-w-md">
+            <input type="search" placeholder="Search for tiles..." className="w-full p-2 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" />
+          </div>
         </div>
-        <div className="flex items-center gap-4">
+
+        {/* Right: Nav Links */}
+        <div className="flex items-center gap-x-4 md:gap-x-6 flex-shrink-0">
           <Link to="/" className="hover:underline">Home</Link>
           <Link to="/about" className="hover:underline">About</Link>
           <Link to="/contact" className="hover:underline">Contact</Link>
-          <Link to="/admin/login" className="px-3 py-1 bg-blue-600 text-white rounded">Admin Login</Link>
+          <Link to="/admin/login" className="px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700">Admin</Link>
         </div>
       </div>
     </nav>
