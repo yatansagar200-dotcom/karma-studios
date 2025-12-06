@@ -1,0 +1,11 @@
+services:
+  - type: static_site
+    name: karma-studios-frontend
+    # repo can be filled automatically by Render when connecting the repo
+    # repo: https://github.com/<your-org>/<your-repo>
+    branch: main
+    buildCommand: cd client && npm install --include=dev && npm run build
+    publishPath: client/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://karma-studios.onrender.com
