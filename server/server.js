@@ -5,6 +5,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const tileRoutes = require('./routes/tileRoutes');
 
+
 const app = express();
 app.use(cors());
 app.use(express.json());

@@ -5,10 +5,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000'
+      '/api': {
+        target: 'https://karma-studios.onrender.com',
+        changeOrigin: true
+      }
     }
   },
   build: {
-    outDir: 'dist'  // ye line add kar do
+    outDir: 'dist'
   }
 })

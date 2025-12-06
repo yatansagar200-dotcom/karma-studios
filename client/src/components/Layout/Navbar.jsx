@@ -11,13 +11,6 @@ export default function Navbar(){
           <span className="hidden sm:inline font-semibold text-lg">Karma Studios</span>
         </Link>
 
-        {/* Center: Search Bar */}
-        <div className="flex-1 flex justify-center px-4 lg:px-8">
-          <div className="w-full max-w-md">
-            <input type="search" placeholder="Search for tiles..." className="w-full p-2 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" />
-          </div>
-        </div>
-
         {/* Right: Nav Links */}
         <div className="flex items-center gap-x-4 md:gap-x-6 flex-shrink-0">
           <Link to="/" className="hover:underline">Home</Link>
