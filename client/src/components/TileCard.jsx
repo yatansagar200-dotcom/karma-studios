@@ -13,6 +13,9 @@ export default function TileCard({ tile }) {
       <div className="mt-3">
         <h3 className="font-semibold text-lg truncate">{tile.name}</h3>
         <p className="text-sm text-gray-600">{tile.brand} • {tile.size} • {tile.surface}</p>
+        {tile.pcsPerBox !== undefined && tile.pcsPerBox !== null && (
+          <p className="text-sm text-gray-600 mt-1">Pcs/box: {tile.pcsPerBox}</p>
+        )}
         <p className="mt-3 font-bold text-blue-700">₹{tile.price}</p>
       </div>
     </div>

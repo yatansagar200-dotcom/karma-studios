@@ -19,7 +19,7 @@ exports.getTiles = async (req, res) => {
 
 exports.addTile = async (req, res) => {
   try {
-    const { name, price, size, surface, brand } = req.body;
+    const { name, price, size, surface, brand, pcsPerBox } = req.body;
     // multer puts file in req.file (memoryStorage)
     let imageUrl = '';
     if (req.file && req.file.buffer) {
@@ -32,7 +32,7 @@ exports.addTile = async (req, res) => {
       });
       imageUrl = result.secure_url;
     }
-    const tile = new Tile({ name, price, size, surface, brand, imageUrl });
+    const tile = new Tile({ name, price: Number(price), size, surface, brand, pcsPerBox: pcsPerBox ? Number(pcsPerBox) : undefined, imageUrl });
     await tile.save();
     res.json(tile);
   } catch (err) {

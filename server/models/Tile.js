@@ -5,6 +5,7 @@ const TileSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   size: { type: String },
   surface: { type: String },
+  pcsPerBox: { type: Number },
   brand: { type: String },
   imageUrl: { type: String },
   createdAt: { type: Date, default: Date.now }
