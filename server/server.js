@@ -40,11 +40,20 @@ const PORT = process.env.PORT || 5000;
 // Start the server regardless of DB connectivity so static site is always served.
 const server = app.listen(PORT, ()=> console.log('Server running on port', PORT));
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(()=> {
-    console.log('MongoDB connected');
-  })
-  .catch(err=> {
-    console.error('MongoDB connection error:', err.message);
-  });
+// Connect to MongoDB with retry logic
+let mongoConnected = false;
+const connectMongo = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoConnected = true;
+    console.log('✓ MongoDB connected');
+  } catch (err) {
+    mongoConnected = false;
+    console.error('✗ MongoDB connection error:', err.message);
+    // Retry connection every 10 seconds
+    setTimeout(connectMongo, 10000);
+  }
+};
+
+connectMongo();
 
