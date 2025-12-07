@@ -12,6 +12,7 @@ exports.getTiles = async (req, res) => {
     const tiles = await Tile.find(filter).sort({ createdAt: -1 });
     res.json(tiles);
   } catch (err) {
+    console.error('getTiles error', err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -35,6 +36,7 @@ exports.addTile = async (req, res) => {
     await tile.save();
     res.json(tile);
   } catch (err) {
+    console.error('addTile error', err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -56,6 +58,7 @@ exports.updateTile = async (req, res) => {
     const tile = await Tile.findByIdAndUpdate(id, update, { new: true });
     res.json(tile);
   } catch (err) {
+    console.error('updateTile error', err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -66,6 +69,7 @@ exports.deleteTile = async (req, res) => {
     await Tile.findByIdAndDelete(id);
     res.json({ success: true });
   } catch (err) {
+    console.error('deleteTile error', err);
     res.status(500).json({ message: err.message });
   }
 };
