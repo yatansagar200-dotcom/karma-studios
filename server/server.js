@@ -12,6 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check endpoint (no DB dependency)
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/tiles', tileRoutes);
 
