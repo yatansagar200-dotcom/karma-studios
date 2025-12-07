@@ -32,12 +32,14 @@ if (process.env.SERVE_CLIENT === 'true' || process.env.NODE_ENV === 'production'
 }
 
 const PORT = process.env.PORT || 5000;
+// Start the server regardless of DB connectivity so static site is always served.
+const server = app.listen(PORT, ()=> console.log('Server running on port', PORT));
+
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(()=> {
-  console.log('MongoDB connected');
-  app.listen(PORT, ()=> console.log('Server running on port', PORT));
-})
-.catch(err=> {
-  console.error('MongoDB connection error:', err.message);
-});
+  .then(()=> {
+    console.log('MongoDB connected');
+  })
+  .catch(err=> {
+    console.error('MongoDB connection error:', err.message);
+  });
 
